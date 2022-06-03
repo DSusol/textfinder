@@ -33,6 +33,11 @@
                                         <input type="text" class="form-control" th:field="*{pathName}"/>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <i><p th:text="${error}" style="color: red; tex"></p></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

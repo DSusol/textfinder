@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.finplatforms.interview.textfinder.services.FileService;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -41,7 +42,11 @@ public class FileController {
     }
 
     @PostMapping("/directory")
-    public String saveNewDirectory(@ModelAttribute Directory directory) {
+    public String saveNewDirectory(@ModelAttribute Directory directory, Model model) {
+        if (!Files.isDirectory(Path.of(directory.getPathName()))) {
+            model.addAttribute("error", "directory does not exist, try again");
+            return "newdirectory";
+        }
         this.directory.setPathName(directory.getPathName());
         return "redirect:/";
     }
