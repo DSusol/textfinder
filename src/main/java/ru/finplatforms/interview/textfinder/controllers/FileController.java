@@ -35,13 +35,13 @@ public class FileController {
     }
 
     @GetMapping("/directory")
-    public String newDirectory(Model model) {
+    public String newDirectoryForm(Model model) {
         model.addAttribute("directory", directory);
         return "newdirectory";
     }
 
     @PostMapping("/directory")
-    public String saveOrUpdate(@ModelAttribute Directory directory) {
+    public String saveNewDirectory(@ModelAttribute Directory directory) {
         this.directory.setPathName(directory.getPathName());
         return "redirect:/";
     }
