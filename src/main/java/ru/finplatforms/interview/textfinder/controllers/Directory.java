@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 @Component
-@Getter
 public class Directory {
 
+    @Getter
     private String pathName;
 
     public void setPathName(String pathName) {

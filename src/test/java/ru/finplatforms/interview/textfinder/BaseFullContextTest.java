@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -35,10 +36,12 @@ public class BaseFullContextTest {
 
     @BeforeAll
     static void testSetUp() throws IOException {
-        Files.walk(Paths.get(BASE_DIRECTORY))
-                .filter(Files::isRegularFile)
-                .map(Path::toFile)
-                .forEach(File::delete);
+        try (Stream<Path> paths = Files.walk(Paths.get(BASE_DIRECTORY))) {
+            paths
+                    .filter(Files::isRegularFile)
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        }
 
         String dir1 = BASE_DIRECTORY + S + "subfld1" + S;
         String dir11 = BASE_DIRECTORY + S + "subfld1" + S + "subfld11" + S;

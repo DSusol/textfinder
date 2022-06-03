@@ -27,7 +27,7 @@ public class FileController {
         }
 
         List<Path> fileList = fileService.getSortedFileListFromDirectory(pathName);
-        fileService.createSingleTxtFileFromList(pathName, fileList);
+        fileService.createSummaryTxtFileFromList(pathName, fileList);
 
         model.addAttribute("files", fileList);
         model.addAttribute("resultFile", fileService.getSummaryFileContents(pathName));

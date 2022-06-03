@@ -35,10 +35,10 @@ public class FileServiceImpl implements FileService {
 
     @SneakyThrows
     @Override
-    public void createSingleTxtFileFromList(String pathName, List<Path> sourceFiles) {
+    public void createSummaryTxtFileFromList(String pathName, List<Path> sourceFiles) {
         List<String> lines = new ArrayList<>();
 
-        for (Path file : sourceFiles) {
+        for (Path file: sourceFiles) {
             Files.lines(file).forEach(lines::add);
         }
 
