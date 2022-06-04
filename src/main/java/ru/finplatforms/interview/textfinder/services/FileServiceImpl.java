@@ -17,7 +17,7 @@ import ru.finplatforms.interview.textfinder.utils.FileTypeChecker;
 
 @Service
 @RequiredArgsConstructor
-public class FileServiceImpl implements FileService {
+class FileServiceImpl implements FileService {
 
     private final String SUMMARY_FILE = "Summary.txt";
     private final FileTypeChecker fileTypeChecker;
