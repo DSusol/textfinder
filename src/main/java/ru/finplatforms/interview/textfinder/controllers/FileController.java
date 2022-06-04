@@ -45,6 +45,7 @@ public class FileController {
     @PostMapping("/directory")
     public String saveNewDirectory(@ModelAttribute DirectoryHolder newDirectory, Model model) {
         if (!Files.isDirectory(Path.of(newDirectory.getPathName()))) {
+            model.addAttribute("directory", newDirectory);
             model.addAttribute("error", "directory does not exist, try again");
             return "newDirectoryView";
         }
