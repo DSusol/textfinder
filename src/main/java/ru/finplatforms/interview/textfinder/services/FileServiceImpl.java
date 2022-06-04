@@ -1,10 +1,5 @@
 package ru.finplatforms.interview.textfinder.services;
 
-import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import org.springframework.stereotype.Service;
-import ru.finplatforms.interview.textfinder.utils.FileTypeChecker;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,6 +8,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import ru.finplatforms.interview.textfinder.utils.FileTypeChecker;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class FileServiceImpl implements FileService {
 
     @SneakyThrows
     @Override
-    public List<Path> getSortedFileListFromDirectory(String rootDirectory) {
+    public List<Path> getSortedTxtFileListFromDirectory(String rootDirectory) {
         try (Stream<Path> paths = Files.walk(Paths.get(rootDirectory))) {
             return paths
                     .filter(Files::isRegularFile)
@@ -48,9 +49,9 @@ public class FileServiceImpl implements FileService {
     @SneakyThrows
     @Override
     public String getSummaryFileContents(String pathName) {
-        StringBuilder content = new StringBuilder();
+        StringBuilder contents = new StringBuilder();
         Files.lines(Paths.get(pathName + SUMMARY_FILE))
-                .forEach(line -> content.append(line).append("\n"));
-        return content.toString();
+                .forEach(line -> contents.append(line).append("\n"));
+        return contents.toString();
     }
 }

@@ -1,14 +1,16 @@
 package ru.finplatforms.interview.textfinder.controllers;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 class FileControllerTest {
 
@@ -30,6 +32,6 @@ class FileControllerTest {
                 .param("pathName", "invalid directory"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("error", "directory does not exist, try again"))
-                .andExpect(view().name("newdirectory"));
+                .andExpect(view().name("newDirectoryView"));
     }
 }

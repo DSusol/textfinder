@@ -38,7 +38,7 @@
                                 <b><p style="text-align: right; margin-top: 0">Found Files:</p></b>
                             </div>
                             <div class="col-md-6">
-                                <ul th:each="file : ${files}">
+                                <ul th:each="file : ${txtFiles}">
                                     <li th:text="${file.getFileName().toString()}">file name</li>
                                 </ul>
                             </div>
@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <b><p style="margin-top: 0">Summary File Content:</p></b>
-                                <p th:text="${resultFile}">result file test</p>
+                                <p th:text="${summaryFileContents}">summary file text</p>
                             </div>
                         </div>
                     </div>

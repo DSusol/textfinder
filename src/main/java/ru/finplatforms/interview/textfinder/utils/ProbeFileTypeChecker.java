@@ -1,11 +1,12 @@
 package ru.finplatforms.interview.textfinder.utils;
 
-import lombok.SneakyThrows;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
+import lombok.SneakyThrows;
 
 @Component
 @Profile("contentProbeFileType")

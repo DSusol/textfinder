@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface FileService {
 
-    List<Path> getSortedFileListFromDirectory(String rootDirectory);
+    List<Path> getSortedTxtFileListFromDirectory(String rootDirectory);
 
     void createSummaryTxtFileFromList(String pathName, List<Path> sourceFiles);
 

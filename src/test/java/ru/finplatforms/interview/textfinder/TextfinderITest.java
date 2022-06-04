@@ -1,16 +1,16 @@
 package ru.finplatforms.interview.textfinder;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import org.junit.jupiter.api.Test;
 
-class TextfinderITests extends BaseFullContextTest {
+class TextfinderITest extends BaseFullContextTest {
 
     @Test
     void when_sending_root_directory_should_generate_sorted_summatytxt_file() throws Exception {

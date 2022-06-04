@@ -1,12 +1,13 @@
 package ru.finplatforms.interview.textfinder.controllers;
 
-import lombok.Getter;
-import org.springframework.stereotype.Component;
-
 import java.io.File;
 
+import org.springframework.stereotype.Component;
+
+import lombok.Getter;
+
 @Component
-public class Directory {
+public class DirectoryHolder {
 
     @Getter
     private String pathName;

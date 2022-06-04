@@ -1,12 +1,5 @@
 package ru.finplatforms.interview.textfinder;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
-import ru.finplatforms.interview.textfinder.services.FileService;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,6 +10,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+import ru.finplatforms.interview.textfinder.services.FileService;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class BaseFullContextTest {
@@ -26,13 +27,14 @@ public class BaseFullContextTest {
     protected static final String BASE_DIRECTORY = "." + S + "testfoder" + S;
 
     private static final List<String> directories = new ArrayList<>();
-    private final Random random = new Random();
 
     @Autowired
     MockMvc mockMvc;
 
     @Autowired
     FileService fileService;
+
+    private final Random random = new Random();
 
     @BeforeAll
     static void testSetUp() throws IOException {

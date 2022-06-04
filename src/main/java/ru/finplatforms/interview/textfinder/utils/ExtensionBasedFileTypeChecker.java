@@ -1,9 +1,9 @@
 package ru.finplatforms.interview.textfinder.utils;
 
+import java.nio.file.Path;
+
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-
-import java.nio.file.Path;
 
 @Component
 @Profile({"extensionBasedFileTypes", "default"})
