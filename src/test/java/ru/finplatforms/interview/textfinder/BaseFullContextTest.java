@@ -38,27 +38,35 @@ public class BaseFullContextTest {
 
     @BeforeAll
     static void testSetUp() throws IOException {
+        createDirectories();
+
         try (Stream<Path> paths = Files.walk(Paths.get(BASE_DIRECTORY))) {
             paths
                     .filter(Files::isRegularFile)
                     .map(Path::toFile)
                     .forEach(File::delete);
         }
-
-        String dir1 = BASE_DIRECTORY + S + "subfld1" + S;
-        String dir11 = BASE_DIRECTORY + S + "subfld1" + S + "subfld11" + S;
-        String dir2 = BASE_DIRECTORY + S + "subfld2" + S;
-
-        directories.addAll(List.of(BASE_DIRECTORY, dir1, dir11, dir2));
     }
-
 
     protected void writeFileIntoRandomDirectory(String fileName, List<String> lines) throws IOException {
         String randomDirectory = directories.get(random.nextInt(directories.size()));
         Files.write(Paths.get(randomDirectory + fileName), lines);
     }
 
-    public String getSummaryFileContents(String pathName) {
+    protected String getSummaryFileContents(String pathName) {
         return fileService.getSummaryFileContents(pathName);
+    }
+
+    private static void createDirectories() throws IOException {
+        String dir1 = BASE_DIRECTORY + S + "subfld1" + S;
+        String dir11 = BASE_DIRECTORY + S + "subfld1" + S + "subfld11" + S;
+        String dir2 = BASE_DIRECTORY + S + "subfld2" + S;
+        List<String> pathNames = List.of(BASE_DIRECTORY, dir1, dir11, dir2);
+
+        for (String pathName: pathNames) {
+            Files.createDirectories(Path.of(pathName));
+        }
+
+        directories.addAll(pathNames);
     }
 }

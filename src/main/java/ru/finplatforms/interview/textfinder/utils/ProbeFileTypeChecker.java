@@ -10,7 +10,7 @@ import lombok.SneakyThrows;
 
 @Component
 @Profile("contentProbeFileType")
-public class ProbeFileTypeChecker implements FileTypeChecker {
+class ProbeFileTypeChecker implements FileTypeChecker {
 
     @SneakyThrows
     @Override
