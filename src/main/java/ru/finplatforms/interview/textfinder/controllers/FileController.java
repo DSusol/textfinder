@@ -1,8 +1,5 @@
 package ru.finplatforms.interview.textfinder.controllers;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +38,7 @@ public class FileController {
 
     @PostMapping("/directory")
     public String saveNewDirectory(@ModelAttribute DirectoryHolder newDirectory, Model model) {
-        if (!Files.isDirectory(Path.of(newDirectory.getPathName()))) {
+        if (fileService.pathIsNotDirectory(newDirectory.getPathName())) {
             model.addAttribute("directory", newDirectory);
             model.addAttribute("error", "directory does not exist, try again");
             return "newDirectoryView";

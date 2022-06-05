@@ -9,5 +9,7 @@ public interface FileService {
 
     String getSummaryTxtFileContents(String rootDirectory);
 
+    boolean pathIsNotDirectory(String pathName);
+
     void saveSummaryTxtFile(String rootDirectory);
 }

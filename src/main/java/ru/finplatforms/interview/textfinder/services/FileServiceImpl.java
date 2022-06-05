@@ -51,6 +51,11 @@ public class FileServiceImpl implements FileService {
         return String.join("\n", lines);
     }
 
+    @Override
+    public boolean pathIsNotDirectory(String pathName) {
+        return !Files.isDirectory(Path.of(pathName));
+    }
+
     @SneakyThrows
     @Override
     public void saveSummaryTxtFile(String rootDirectory) {

@@ -15,7 +15,13 @@ public class TextfinderApplication {
         if (args.length != 0) {
             FileServiceImpl service = new FileServiceImpl(new ExtensionBasedFileTypeChecker());
             String rootDirectory = args[0];
-            service.getSummaryTxtFileContents(rootDirectory);
+
+            if(service.pathIsNotDirectory(rootDirectory)) {
+                System.out.println("invalid directory provided");
+            } else {
+                service.saveSummaryTxtFile(rootDirectory);
+            }
+
             exit(0);
         }
         SpringApplication.run(TextfinderApplication.class, args);

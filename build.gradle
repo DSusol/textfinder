@@ -9,6 +9,10 @@ group = 'ru.finplatforms.interview'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+bootJar {
+    archiveFileName = "textfinder_0.0.1.jar"
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
