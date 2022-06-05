@@ -45,11 +45,18 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <b><p style="margin-top: 0">Summary File Content:</p></b>
+                                <b><p style="margin-top: 0">Summary File Contents:</p></b>
                                 <p th:text="${summaryFileContents}">summary file text</p>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <a class="btn btn-default" href="#"
+                                   th:href="@{'/save'}" role="button">Save Summary File</a>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -53,8 +53,11 @@ public class BaseFullContextTest {
         Files.write(Paths.get(randomDirectory + fileName), lines);
     }
 
-    protected String getSummaryFileContents(String pathName) {
-        return fileService.getSummaryFileContents(pathName);
+    protected String getSummaryFileContents(String pathName) throws IOException {
+        StringBuilder contents = new StringBuilder();
+        Files.lines(Paths.get(pathName + SUMMARY_FILE))
+                .forEach(line -> contents.append(line).append("\n"));
+        return contents.toString();
     }
 
     private static void createDirectories() throws IOException {

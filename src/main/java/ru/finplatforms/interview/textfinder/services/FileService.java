@@ -7,7 +7,7 @@ public interface FileService {
 
     List<Path> getSortedTxtFileListFromDirectory(String rootDirectory);
 
-    void createSummaryTxtFileFromList(String pathName, List<Path> sourceFiles);
+    String getSummaryTxtFileContents(String rootDirectory);
 
-    String getSummaryFileContents(String pathName);
+    void saveSummaryTxtFile(String rootDirectory);
 }

@@ -2,7 +2,6 @@ package ru.finplatforms.interview.textfinder.controllers;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,11 +27,8 @@ public class FileController {
             return "fileDetailsView";
         }
 
-        List<Path> txtFileList = fileService.getSortedTxtFileListFromDirectory(pathName);
-        fileService.createSummaryTxtFileFromList(pathName, txtFileList);
-
-        model.addAttribute("txtFiles", txtFileList);
-        model.addAttribute("summaryFileContents", fileService.getSummaryFileContents(pathName));
+        model.addAttribute("txtFiles", fileService.getSortedTxtFileListFromDirectory(pathName));
+        model.addAttribute("summaryFileContents", fileService.getSummaryTxtFileContents(pathName));
         return "fileDetailsView";
     }
 
@@ -50,6 +46,15 @@ public class FileController {
             return "newDirectoryView";
         }
         directoryHolder.setPathName(newDirectory.getPathName());
+        return "redirect:/";
+    }
+
+    @GetMapping("/save")
+    public String saveFile() {
+        String pathName = directoryHolder.getPathName();
+        if (pathName != null) {
+            fileService.saveSummaryTxtFile(pathName);
+        }
         return "redirect:/";
     }
 }

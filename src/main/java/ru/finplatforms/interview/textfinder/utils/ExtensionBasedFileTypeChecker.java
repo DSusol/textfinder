@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Profile({"extensionBasedFileTypes", "default"})
-class ExtensionBasedFileTypeChecker implements FileTypeChecker {
+public class ExtensionBasedFileTypeChecker implements FileTypeChecker {
 
     @Override
     public boolean isTextFile(Path file) {

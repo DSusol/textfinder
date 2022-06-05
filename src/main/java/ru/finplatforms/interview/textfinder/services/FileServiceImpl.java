@@ -1,9 +1,11 @@
 package ru.finplatforms.interview.textfinder.services;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,9 +19,8 @@ import ru.finplatforms.interview.textfinder.utils.FileTypeChecker;
 
 @Service
 @RequiredArgsConstructor
-class FileServiceImpl implements FileService {
+public class FileServiceImpl implements FileService {
 
-    private final String SUMMARY_FILE = "Summary.txt";
     private final FileTypeChecker fileTypeChecker;
 
     @SneakyThrows
@@ -36,22 +37,29 @@ class FileServiceImpl implements FileService {
 
     @SneakyThrows
     @Override
-    public void createSummaryTxtFileFromList(String pathName, List<Path> sourceFiles) {
+    public String getSummaryTxtFileContents(String rootDirectory) {
         List<String> lines = new ArrayList<>();
+        List<Path> sourceFiles = getSortedTxtFileListFromDirectory(rootDirectory);
 
         for (Path file: sourceFiles) {
             Files.lines(file).forEach(lines::add);
         }
-
-        Files.write(Paths.get(pathName + SUMMARY_FILE), lines);
+        return String.join("\n", lines);
     }
 
     @SneakyThrows
     @Override
-    public String getSummaryFileContents(String pathName) {
-        StringBuilder contents = new StringBuilder();
-        Files.lines(Paths.get(pathName + SUMMARY_FILE))
-                .forEach(line -> contents.append(line).append("\n"));
-        return contents.toString();
+    public void saveSummaryTxtFile(String rootDirectory) {
+        String contents = getSummaryTxtFileContents(rootDirectory);
+        String SUMMARY_FILE = "Summary.txt";
+        rootDirectory = appendFileSeparatorIfMissing(rootDirectory);
+        Files.write(Paths.get(rootDirectory + SUMMARY_FILE), Collections.singleton(contents));
+    }
+
+    private String appendFileSeparatorIfMissing(String pathName) {
+        if (pathName.lastIndexOf(File.separator) != (pathName.length() - 1)) {
+            pathName += File.separator;
+        }
+        return pathName;
     }
 }
