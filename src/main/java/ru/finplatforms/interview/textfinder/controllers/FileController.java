@@ -27,6 +27,7 @@ public class FileController {
             return "fileDetailsView";
         }
 
+        model.addAttribute("directory", pathName);
         model.addAttribute("txtFiles", fileService.getSortedTxtFileListFromDirectory(pathName));
         model.addAttribute("summaryFileContents", fileService.getSummaryTxtFileContents(pathName));
         return "fileDetailsView";

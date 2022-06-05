@@ -24,7 +24,7 @@ class TextfinderITest extends BaseFullContextTest {
         mockMvc.perform(post("/directory")
                 .param("pathName", BASE_DIRECTORY));
 
-        mockMvc.perform(get("/"));
+        mockMvc.perform(get("/save"));
 
         //then
         Path summaryFile = Path.of(BASE_DIRECTORY + S + SUMMARY_FILE);

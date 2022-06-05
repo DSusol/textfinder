@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,9 @@ import ru.finplatforms.interview.textfinder.utils.FileTypeChecker;
 @Service
 @RequiredArgsConstructor
 public class FileServiceImpl implements FileService {
+
+    @Value("${summary.file.name}")
+    private String summaryFileName;
 
     private final FileTypeChecker fileTypeChecker;
 
@@ -51,9 +55,8 @@ public class FileServiceImpl implements FileService {
     @Override
     public void saveSummaryTxtFile(String rootDirectory) {
         String contents = getSummaryTxtFileContents(rootDirectory);
-        String SUMMARY_FILE = "Summary.txt";
         rootDirectory = appendFileSeparatorIfMissing(rootDirectory);
-        Files.write(Paths.get(rootDirectory + SUMMARY_FILE), Collections.singleton(contents));
+        Files.write(Paths.get(rootDirectory + summaryFileName), Collections.singleton(contents));
     }
 
     private String appendFileSeparatorIfMissing(String pathName) {
