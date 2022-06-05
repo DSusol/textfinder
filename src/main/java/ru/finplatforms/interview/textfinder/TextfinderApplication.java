@@ -16,10 +16,11 @@ public class TextfinderApplication {
             FileServiceImpl service = new FileServiceImpl(new ExtensionBasedFileTypeChecker());
             String rootDirectory = args[0];
 
-            if(service.pathIsNotDirectory(rootDirectory)) {
+            if (service.pathIsNotDirectory(rootDirectory)) {
                 System.out.println("invalid directory provided");
             } else {
                 service.saveSummaryTxtFile(rootDirectory);
+                System.out.println("summary file is saved in '" + rootDirectory + "'");
             }
 
             exit(0);

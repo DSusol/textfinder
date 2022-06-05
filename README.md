@@ -1,4 +1,12 @@
 ### **Instructions:**
+Using command line:
+- rus jar file as _"java -jar textfinder_0.0.1.jar /folder"_
+
+Using GUI:
+
 - Build and run spring application.
 - GUI is available on Local Host port 8080.
-- When root folder is selected, _Summaty.txt_ file is generated/appended in the folder each time GET method is performed.
+- Select directory
+- Review found txt file list and summary file contents
+- Save summary file
+- _Summaty.txt_ file is available in selected directory.
